@@ -1,0 +1,28 @@
+* {
+    font-family: 'Arial', sans-serif;
+}
+
+.page-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 32px;
+}
+
+.page-container h1 {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.page-container h2 {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.page-container select {
+    margin: 32px 0;
+}
+
+.page-container p {
+    text-align: justify;
+    font-size: 13px;
+}

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (! isset($_GET['location'])) {
     //Generate the book location in the library
@@ -20,10 +21,10 @@ $letters = range('a', 'z');
 $specialChars = [' ', ',', '.'];
 $alphabet = array_merge($letters, $specialChars);
 
-$bookTitle = generateBookTitle($alphabet);
+$bookTitle = isset($_SESSION['title']) ? $_SESSION['title'] : generateBookTitle($alphabet);
 
-$page = generatePage($alphabet);
-function generatePage(array $alphabet): array
+$page = isset($_SESSION['page'][$bookLocation][$currentPage]) ? $_SESSION['page'][$bookLocation][$currentPage] : generatePage($alphabet, $currentPage, $bookLocation);
+function generatePage(array $alphabet, int $page, string $bookLocation): array
 {
     $result = [];
     $lines = 0;
@@ -40,6 +41,7 @@ function generatePage(array $alphabet): array
         $lines++;
     }
 
+    $_SESSION['page'][$bookLocation][$page] = $result;
     return $result;
 }
 
@@ -52,6 +54,7 @@ function generateBookTitle(array $alphabet): string
         $result .= $alphabet[rand(0, count($alphabet) - 1)];
     }
 
+    $_SESSION['title'] = $result;
     return $result;
 }
 

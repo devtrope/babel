@@ -10,22 +10,32 @@ include 'script.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $bookTitle; ?></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <h1><?= $bookTitle; ?></h1>
-    <select name="page" id="page">
-        <?php for ($i = 1; $i <= 410; $i++): ?>
-            <option value="<?= $i; ?>" <?= $i == $currentPage ? 'selected' : ''; ?>>Page <?= $i; ?></option>
-        <?php endfor; ?>
-    </select>
-    <?php foreach ($page as $line): ?>
-        <p><?= implode('', $line); ?></p>
-    <?php endforeach; ?>
+    <div class="page-container">
+        <h1><?= $bookTitle; ?></h1>
+        <h2><?= $bookLocation; ?></h2>
 
-    <script defer>
-        document.querySelector('select[name="page"]').addEventListener('change', () => {
-            window.location.href = 'index.php?location=<?= $bookLocation; ?>&page=' + this.value
-        })
-    </script>
+        <select name="page" id="page" class="form-select">
+            <?php for ($i = 1; $i <= 410; $i++): ?>
+                <option value="<?= $i; ?>" <?= $i == $currentPage ? 'selected' : ''; ?>>Page <?= $i; ?></option>
+            <?php endfor; ?>
+        </select>
+
+        <p>
+            <?php foreach ($page as $line): ?>
+                <?= implode('', $line); ?>
+            <?php endforeach; ?>
+        </p>
+
+        <script defer>
+            document.querySelector('select[name="page"]').addEventListener('change', e => {
+                window.location.href = 'index.php?location=<?= $bookLocation; ?>&page=' + e.target.value
+            })
+        </script>
+    </div>
 </body>
 </html>
