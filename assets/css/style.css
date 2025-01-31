@@ -1,5 +1,5 @@
 * {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Courrier New', monospace;
 }
 
 .page-container {
@@ -9,20 +9,19 @@
 }
 
 .page-container h1 {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 800;
+    margin-bottom: 32px;
+    text-align: center;
 }
 
-.page-container h2 {
-    font-size: 14px;
-    font-weight: 400;
-}
-
-.page-container select {
-    margin: 32px 0;
+.page-container pre {
+    text-wrap: wrap;
+    font-size: 15px;
+    white-space: collapse;
 }
 
 .page-container p {
-    text-align: justify;
-    font-size: 13px;
+    font-size: 15px;
+    text-align: center;
 }

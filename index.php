@@ -16,26 +16,29 @@ include 'script.php';
 </head>
 <body>
     <div class="page-container">
-        <h1><?= $bookTitle; ?></h1>
-        <h2><?= $bookLocation; ?></h2>
+        <?php if ($currentPage == 1) : ?>
+            <h1><?= $bookTitle; ?></h1>
+        <?php endif; ?>
 
-        <select name="page" id="page" class="form-select">
-            <?php for ($i = 1; $i <= 410; $i++): ?>
-                <option value="<?= $i; ?>" <?= $i == $currentPage ? 'selected' : ''; ?>>Page <?= $i; ?></option>
-            <?php endfor; ?>
-        </select>
-
-        <p>
+        <pre>
             <?php foreach ($page as $line): ?>
                 <?= implode('', $line); ?>
             <?php endforeach; ?>
-        </p>
+        </pre>
 
-        <script defer>
-            document.querySelector('select[name="page"]').addEventListener('change', e => {
-                window.location.href = 'index.php?location=<?= $bookLocation; ?>&page=' + e.target.value
-            })
-        </script>
+        <p><?= $currentPage; ?></p>
     </div>
+    
+    <select name="page" id="page" class="form-select">
+        <?php for ($i = 1; $i <= 410; $i++): ?>
+            <option value="<?= $i; ?>" <?= $i == $currentPage ? 'selected' : ''; ?>>Page <?= $i; ?></option>
+        <?php endfor; ?>
+    </select>
+
+    <script defer>
+        document.querySelector('select[name="page"]').addEventListener('change', e => {
+            window.location.href = 'index.php?location=<?= $bookLocation; ?>&page=' + e.target.value
+        })
+    </script>
 </body>
 </html>

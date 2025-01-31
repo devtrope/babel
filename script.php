@@ -2,6 +2,7 @@
 session_start();
 
 if (! isset($_GET['location'])) {
+    session_destroy();
     //Generate the book location in the library
     $bookLocation = generateBookLocation();
     header('Location: index.php?location=' . $bookLocation . '&page=1');
