@@ -14,9 +14,12 @@ $80 * 40 * 410 = 1 312 000$
 
 _Mon serveur web :_
 
-![GIF de mon serveur web](https://media1.tenor.com/m/ytk7XcrurQQAAAAd/manchesterbythesea-manchester.gif)
+![GIF de mon serveur web](https://images.hive.blog/0x0/https://thumbs.gfycat.com/HeartyPassionateKob-size_restricted.gif)
 
 Je pense que ça devrait le faire !
+
+Il y a le site [libraryofbabel](https://libraryofbabel.info) qui fait justement ce concept là, avec quelques fonctionnalités intéressantes au-delà de la simple génération de 410 pages de charabia.  
+Genre `gqxzxkxxevbxemhzcoqxiwfaynpmnpvd.epkfgdwzwjkqvom` je sais pas trop ce que ça veut dire par exemple.
 
 ## Et comment tu vas faire ?
 
