@@ -1,85 +1,31 @@
 <?php
-session_start();
 
-if (! isset($_GET['location'])) {
-    session_destroy();
-    //Generate the book location in the library
-    $bookLocation = generateBookLocation();
-    header('Location: index.php?location=' . $bookLocation . '&page=1');
-    exit(300);
-}
+require_once 'bdd.php';
+require_once 'functions.php';
 
 $bookLocation = $_GET['location'];
-
-if (! isset($_GET['page']) || ! is_numeric($_GET['page']) || $_GET['page'] < 1 || $_GET['page'] > 410) {
-    header('Location: index.php?location=' . $bookLocation . '&page=1');
-    exit(300);
-}
-
+$bookLocationArray = explode('-', $bookLocation);
 $currentPage = $_GET['page'];
 
-$letters = range('a', 'z');
-$specialChars = [' ', ',', '.'];
-$alphabet = array_merge($letters, $specialChars);
+$location = $bookLocationArray[0];
+$wall = str_replace('w', '', $bookLocationArray[1]);
+$shelf = str_replace('s', '', $bookLocationArray[2]);
+$volume = str_replace('v', '', $bookLocationArray[3]);
 
-$bookTitle = isset($_SESSION['title']) ? $_SESSION['title'] : generateBookTitle($alphabet);
+$book = $bdd->prepare('SELECT id, title FROM books WHERE location = :location AND wall = :wall AND shelf = :shelf AND volume = :volume');
+$book->execute([
+    'location' => $location,
+    'wall' => $wall,
+    'shelf' => $shelf,
+    'volume' => $volume
+]);
+$data = $book->fetch(PDO::FETCH_ASSOC);
 
-$page = isset($_SESSION['page'][$bookLocation][$currentPage]) ? $_SESSION['page'][$bookLocation][$currentPage] : generatePage($alphabet, $currentPage, $bookLocation);
-function generatePage(array $alphabet, int $page, string $bookLocation): array
-{
-    $result = [];
-    $lines = 0;
+$page = $bdd->prepare('SELECT content FROM pages WHERE book_id = :book_id AND page = :page');
+$page->execute([
+    'book_id' => $data['id'],
+    'page' => $currentPage
+]);
 
-    while ($lines < 40) {
-        $result[$lines] = [];
-        $characters = 0;
-
-        while ($characters < 80) {
-            $result[$lines][] = $alphabet[rand(0, count($alphabet) - 1)];
-            $characters++;
-        }
-
-        $lines++;
-    }
-
-    $_SESSION['page'][$bookLocation][$page] = $result;
-    return $result;
-}
-
-function generateBookTitle(array $alphabet): string
-{
-    $result = '';
-    $titleLength = rand(5, 15);
-
-    for ($i = 0; $i < $titleLength; $i++) {
-        $result .= $alphabet[rand(0, count($alphabet) - 1)];
-    }
-
-    $_SESSION['title'] = $result;
-    return $result;
-}
-
-function generateBookLocation(): string
-{
-    $volumeNumber = rand(1, 32);
-    $shelfNumber = rand(1, 5);
-    $wallNumber = rand(1, 4);
-    $hexagonNumber = generateHexagonNumber();
-
-    return $hexagonNumber . '-w' . $wallNumber . '-s' . $shelfNumber . '-v' . $volumeNumber;
-}
-
-function generateHexagonNumber(): string
-{
-    $result = '';
-    $resultLength = rand(5, 15);
-    $letters = range('a', 'z');
-    $numbers = range(0, 9);
-    $base36 = array_merge($letters, $numbers);
-
-    for ($i = 0; $i < $resultLength; $i++) {
-        $result .= $base36[rand(0, count($base36) - 1)];
-    }
-
-    return $result;
-}
+$bookTitle = $data['title'];
+$pageContent = $page->fetch(PDO::FETCH_ASSOC)['content'];

@@ -21,9 +21,7 @@ include 'script.php';
         <?php endif; ?>
 
         <pre>
-            <?php foreach ($page as $line): ?>
-                <?= implode('', $line); ?>
-            <?php endforeach; ?>
+            <?= $pageContent; ?>
         </pre>
 
         <p><?= $currentPage; ?></p>
