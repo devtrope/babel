@@ -8,7 +8,7 @@ Grosso modo, et parce que je suis pas Wikipedia, c'est tiré d'une nouvelle, et 
 
 Parce que générer une suite de caractères random ça me semble pas compliqué, c'est plus la quantité qui va être un souci, l'idée c'est que chaque livre a 410 pages, chaque page a 40 lignes, et chaque ligne environ 80 caractères, ce qui nous fait donc :
 
-$80 * 40 * 410 = 1 312 000$
+$`80 * 40 * 410 = 1 312 000`$
 
 1 312 000 caractères, ce qui est beaucoup, mais si ça se trouve mon serveur web aura pas de souci à faire tourner ça, demandons lui.
 
