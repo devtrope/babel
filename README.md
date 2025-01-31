@@ -29,7 +29,7 @@ Mais je ne pense pas avoir les capacités de stockage d'autant de bouquins malhe
 
 ## Est-ce que ça peut vraiment générer un livre complet ?
 
-Pour donner un ordre d'idées, avec les 26 lettres de l'alphabet en minuscule, des espaces, des points et des virgules, soit 29 caractères, le nombre possible de combinaisons est de $`29^1312000`$ ce qui est plus qu'immense, pour donner un ordre d'idées, le nombre d'atomes dans l'univers est de $`2x10^79`$ donc on parle d'un nombre astronomique de livres.
+Pour donner un ordre d'idées, avec les 26 lettres de l'alphabet en minuscule, des espaces, des points et des virgules, soit 29 caractères, le nombre possible de combinaisons est de $`29^{1312000}`$ ce qui est plus qu'immense, pour donner un ordre d'idées, le nombre d'atomes dans l'univers est de $`2x10^{79}`$ donc on parle d'un nombre astronomique de livres.
 
 Disons que la probabilité de générer un livre complet, en français, avec du sens est quasi-nulle, on parle de 0.000000000000...(avec beaucoup de 0 derrière)...1%, mais techniquement pas impossible en tout cas.
 
